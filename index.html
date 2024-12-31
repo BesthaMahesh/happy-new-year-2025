@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy New Year</title>
+    <title>New Year Celebration</title>
     <style>
         body {
             display: flex;
@@ -11,41 +11,49 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #141E30, #243B55);
             color: white;
             overflow: hidden;
         }
 
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: 2;
+            color: #FFD700;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
+            color: #FFD700;
         }
 
         input {
-            font-size: 1.2rem;
+            font-size: 1rem;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ff758c;
+            border: none;
             border-radius: 5px;
             width: 80%;
+            background: #243B55;
+            color: #FFD700;
+        }
+
+        input::placeholder {
+            color: #FFD700;
         }
 
         button {
-            font-size: 1.2rem;
+            font-size: 1rem;
             padding: 10px 20px;
-            color: #ff758c;
-            background: white;
+            color: #141E30;
+            background: #FFD700;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -53,7 +61,7 @@
         }
 
         button:hover {
-            background: #ffe0e5;
+            background: #FFC107;
             transform: scale(1.1);
         }
 
@@ -63,7 +71,7 @@
 
         #message {
             margin-top: 20px;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             opacity: 0;
             transition: opacity 0.5s;
         }
@@ -89,7 +97,7 @@
             height: 10px;
             background: white;
             border-radius: 50%;
-            animation: explode 1s ease-out forwards;
+            animation: explode 1.5s ease-out forwards;
         }
 
         @keyframes explode {
@@ -98,7 +106,7 @@
                 opacity: 1;
             }
             100% {
-                transform: scale(3);
+                transform: scale(4);
                 opacity: 0;
             }
         }
@@ -106,7 +114,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>🎉 Happy New Year! 🎉</h1>
+        <h1>Welcome to the New Year Celebration!</h1>
         <input type="text" id="nameInput" placeholder="Enter your name" />
         <button id="submitButton">Submit</button>
         <div id="message"></div>
@@ -121,11 +129,11 @@
 
             if (nameInput) {
                 // Display personalized message
-                message.textContent = `🎊 Happy New Year, ${nameInput}! 🎊 May you achieve your goals.`;
+                message.textContent = `🎆 Happy New Year, ${nameInput}! 🎆 Wishing you success and happiness.`;
                 message.classList.add('show');
 
                 // Create fireworks
-                for (let i = 0; i < 30; i++) {
+                for (let i = 0; i < 40; i++) {
                     const firework = document.createElement('div');
                     firework.className = 'firework';
                     firework.style.left = `${Math.random() * 100}%`;
@@ -139,7 +147,7 @@
                     });
                 }
             } else {
-                message.textContent = "Please enter your name to receive your wish!";
+                message.textContent = "Please enter your name to join the celebration!";
                 message.classList.add('show');
             }
         });
