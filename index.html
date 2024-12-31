@@ -12,14 +12,14 @@
             height: 100vh;
             margin: 0;
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to right, #141E30, #243B55);
+            background: radial-gradient(circle, #1a2a6c, #b21f1f, #fdbb2d);
             color: white;
             overflow: hidden;
         }
 
         .container {
             text-align: center;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(255, 255, 255, 0.1);
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
@@ -41,7 +41,7 @@
             border: none;
             border-radius: 5px;
             width: 80%;
-            background: #243B55;
+            background: rgba(255, 255, 255, 0.2);
             color: #FFD700;
         }
 
@@ -110,6 +110,29 @@
                 opacity: 0;
             }
         }
+
+        .countdown {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #FFD700;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .wish {
+            margin-top: 30px;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #FFD700;
+        }
     </style>
 </head>
 <body>
@@ -118,10 +141,26 @@
         <input type="text" id="nameInput" placeholder="Enter your name" />
         <button id="submitButton">Submit</button>
         <div id="message"></div>
+        <div class="countdown" id="countdown"></div>
     </div>
     <div class="fireworks" id="fireworks"></div>
 
     <script>
+        function startCountdown() {
+            const countdown = document.getElementById('countdown');
+            let timeLeft = 5;
+
+            const timer = setInterval(() => {
+                if (timeLeft > 0) {
+                    countdown.textContent = `Celebration begins in ${timeLeft}...`;
+                    timeLeft--;
+                } else {
+                    countdown.textContent = "🎉 Let's Celebrate! 🎉";
+                    clearInterval(timer);
+                }
+            }, 1000);
+        }
+
         document.getElementById('submitButton').addEventListener('click', function() {
             const nameInput = document.getElementById('nameInput').value.trim();
             const message = document.getElementById('message');
@@ -129,8 +168,11 @@
 
             if (nameInput) {
                 // Display personalized message
-                message.textContent = `🎆 Happy New Year, ${nameInput}! 🎆 Wishing you success and happiness.`;
+                message.textContent = `🎆 Happy New Year, ${nameInput}! 🎆 Wishing you endless joy and success.`;
                 message.classList.add('show');
+
+                // Start countdown
+                startCountdown();
 
                 // Create fireworks
                 for (let i = 0; i < 40; i++) {
@@ -146,6 +188,12 @@
                         firework.remove();
                     });
                 }
+
+                // Add a wish
+                const wish = document.createElement('div');
+                wish.className = 'wish';
+                wish.textContent = "May this year bring you health, wealth, and happiness!";
+                document.querySelector('.container').appendChild(wish);
             } else {
                 message.textContent = "Please enter your name to join the celebration!";
                 message.classList.add('show');
